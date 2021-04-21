@@ -1,0 +1,240 @@
+@media (min-width:768px) {
+    
+    #sidebarMenu ul li:first-child {
+        margin-top: 20px;
+    }
+    #sidebarMenu ul li {
+        margin-top: 10px;
+    }
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    /* behind the navbar*/
+    padding: 48px 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Scrollable contents if viewport is shorter than content. */
+}
+
+.navbar .navbar-toggler {
+    top: .90rem;
+    right: 1rem;
+}
+
+.navbar-brand {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, .25);
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+
+.form-control:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px rgba(1, 112, 127, .75);
+}
+
+.tarjetas > div{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+/*codido adicional*/
+/*formulario*/
+.root{
+
+    overflow: hidden;/*quita el scro horizontal*/
+
+}
+
+.form-descuento {
+    /*padding: 10px 15px;*/
+    /*width: 90%;*/
+    
+}
+
+.progressbar {
+    display: flex;
+    list-style: none;
+    /*margin-bottom: 15px;*/
+    counter-reset: step; /*contador de css*/
+}
+
+.progressbar__option {
+    /*width: 100%;*/
+    /*text-align: center;*/
+    font-size: .7rem;
+    /*text-transform: uppercase;*/
+    position: relative;
+}
+
+.progressbar__option:before {
+    display: flex;
+    content: counter(step); /*valor contador*/
+    counter-increment: step;
+    width: 20px;
+    height: 20px;
+    background-color: #cce2e5;
+    margin: 0 auto 5px;
+    border-radius: 3px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    color:white;
+}
+
+.progressbar__option:after {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: #cce2e5;
+    position: absolute;
+    top: 10px;
+    left: -50%;
+    z-index: 1;
+}
+
+.progressbar__option:first-child:after {
+    content: none;
+}
+
+.progressbar__option.active:before, .progressbar__option.active:after {
+    background-color: #016f7e;
+}
+
+/* Título del formulario */
+.form-descuento__title {
+}
+
+/* body del formulario */
+.form-descuento__body {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* step */
+.step {
+    background-color: #F8F9F9;
+    /*box-shadow: 2px 5px 5px 2px #17202A;*/
+    box-shadow: 0px 0px 1px 0px #17202A;
+    border-radius: 1px;
+    min-width: 100%;
+    opacity: 0;
+    transition: all .2s linear;
+}
+
+.step.active {
+    opacity: 1;
+}
+
+.step.to-left {
+    margin-left: -100%;
+}
+
+.step.inactive {
+    animation-name: scale;
+    animation-duration: .2s;
+    animation-direction: alternate;
+    animation-iteration-count: 2;
+}
+/*animacion para cambiar de menu*/
+@keyframes scale {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+/* header de step */
+.step__header {
+    border-radius: 3px 3px 0 0;
+}
+
+.step__title {
+
+}
+
+/* body de step */
+.step__body {
+    /*padding: 10px 15px 0;*/
+}
+
+/* step inputs */
+.step__input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+/* step footer */
+.step__footer {
+    /*padding: 20px 15px;
+    text-align: center;*/
+}
+
+/*Bton circular (+)*/
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.hover-menu{
+	color: #01515c;
+    background-color: #e9ecef;
+}
+
+
+.message-container {
+/*     position: fixed; */
+/*     bottom: 0; */
+/*     z-index: 1050; */
+/*     width: 100%; */
+/*     text-align: center; */
+    
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0px;
+    z-index: 1050;
+    width: 85%;
+    text-align: center;
+}
+.hide{display:none !important}
+
+.show{display:block !important}

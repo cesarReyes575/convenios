@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+    
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>java:jboss/datasources/DSPV</value>
+        </property>
+    </bean>
+    
+    <bean id="jdbctemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="configLocation">
+            <value>WEB-INF/classes/hibernate.cfg.xml</value>
+        </property>
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    
+    
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+   
+    <bean id="TransactionTemplateDAO" abstract="true" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager" />
+        <property name="transactionAttributes">
+            <props>
+                <prop key="create*">PROPAGATION_REQUIRED</prop>
+                <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="make*">PROPAGATION_REQUIRED</prop>
+                <prop key="guardar*">PROPAGATION_REQUIRED</prop>
+                <prop key="insert*">PROPAGATION_REQUIRED</prop>
+                <prop key="select*">PROPAGATION_REQUIRED</prop>
+                <prop key="update*">PROPAGATION_REQUIRED</prop>
+                <prop key="delete*">PROPAGATION_REQUIRED</prop>
+                <prop key="*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="UsuarioDAO" parent="TransactionTemplateDAO" >
+        <property name="target">
+            <bean class="mx.com.convenios.dao.impl.UsuarioDAOImpl">
+                <property name="sessionFactory" ref="sessionFactory"/>
+            </bean>
+        </property>        
+    </bean>
+    
+    <bean id="EmpresaDAO" parent="TransactionTemplateDAO" >
+        <property name="target">
+            <bean class="mx.com.convenios.dao.impl.EmpresaDAOImpl">
+                <property name="sessionFactory" ref="sessionFactory"/>
+            </bean>
+        </property>        
+    </bean>
+    
+    <bean id="SubEmpresaDAO" parent="TransactionTemplateDAO" >
+        <property name="target">
+            <bean class="mx.com.convenios.dao.impl.SubEmpresaDAOImpl">
+                <property name="sessionFactory" ref="sessionFactory"/>
+            </bean>
+        </property>        
+    </bean>
+    
+    <bean id="CampanaConvenioDAO" parent="TransactionTemplateDAO" >
+        <property name="target">
+            <bean class="mx.com.convenios.dao.impl.CampanaConvenioDAOImpl">
+                <property name="sessionFactory" ref="sessionFactory"/>
+            </bean>
+        </property>        
+    </bean>
+    
+    <bean id="MonederoConvenioDAO" parent="TransactionTemplateDAO" >
+        <property name="target">
+            <bean class="mx.com.convenios.dao.impl.MonederoConvenioDAOImpl">
+                <property name="sessionFactory" ref="sessionFactory"/>
+            </bean>
+        </property>        
+    </bean>
+    
+    <bean id="HistoricoCampanaConvenioDAO" parent="TransactionTemplateDAO" >
+        <property name="target">
+            <bean class="mx.com.convenios.dao.impl.HistoricoCampanaConvenioDAOImpl">
+                <property name="sessionFactory" ref="sessionFactory"/>
+            </bean>
+        </property>        
+    </bean>
+    
+    <bean id="HistoricoEmpresaDAO" parent="TransactionTemplateDAO" >
+        <property name="target">
+            <bean class="mx.com.convenios.dao.impl.HistoricoEmpresaDAOImpl">
+                <property name="sessionFactory" ref="sessionFactory"/>
+            </bean>
+        </property>        
+    </bean>
+   
+</beans>

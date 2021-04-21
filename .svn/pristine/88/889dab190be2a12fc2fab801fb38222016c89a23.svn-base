@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+       
+<!--
+     This is a blank Tiles definition file with a commented example.
+-->
+
+<tiles-definitions>
+    
+    <definition name=".principal" path="/layout/layoutPrincipal.jsp">
+        <put name="title" value="Inicio" />
+        <put name="tituloModulo" value="Bienvenido" />
+        <put name="include" value="/layout/include.jsp" />
+        <put name="header" value="/layout/header.jsp" />
+        <put name="menu" value="/layout/menu.jsp" />
+        <put name="body" value="/layout/body.jsp" />
+        <put name="footer" value="/layout/footer.jsp" />
+    </definition>
+    
+    <definition name=".login" path="/jsp/login/login.jsp"/>
+    
+    <definition name=".listEmpresas" extends=".principal">
+        <put name="titulo" value="Lista Empresas" />
+        <put name="contenido" value="/jsp/empresa/listEmpresas.jsp" />
+    </definition>
+    
+    <definition name=".formEmpresa" extends=".principal">
+        <put name="titulo" value="formulario de Empresa" />
+        <put name="contenido" value="/jsp/empresa/formEmpresa.jsp" />
+    </definition>
+    
+    <definition name=".formSubEmpresa" extends=".principal">
+        <put name="titulo" value="formulario de Sub Empresa" />
+        <put name="contenido" value="/jsp/empresa/formSubEmpresa.jsp" />
+    </definition>
+    
+    <definition name=".listCampanas" extends=".principal">
+        <put name="titulo" value="Lista Campañas" />
+        <put name="contenido" value="/jsp/campana/listCampanas.jsp" />
+    </definition>
+    
+    <definition name=".formCampana" extends=".principal">
+        <put name="titulo" value="formulario de Campaña" />
+        <put name="contenido" value="/jsp/campana/formCampana.jsp" />
+    </definition>
+    
+    <definition name=".formUpdateCampana" extends=".principal">
+        <put name="titulo" value="formulario de Actualización de Campaña" />
+        <put name="contenido" value="/jsp/campana/formUpdateCampana.jsp" />
+    </definition>
+
+</tiles-definitions>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2021, 12:37:22 PM by Hibernate Tools 4.3.5.Final -->
+<hibernate-mapping>
+    <class name="mx.com.convenios.bean.CatSubEmpresa" table="CAT_SUB_EMPRESA" schema="POS_DEVLYN" optimistic-lock="version">
+        <id name="idSubEmpresa" type="int">
+            <column name="ID_SUB_EMPRESA" precision="9" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="catEmpresa" class="mx.com.convenios.bean.CatEmpresa" fetch="select">
+            <column name="ID_EMPRESA" precision="9" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="100" not-null="true" />
+        </property>
+        <set name="campanaConvenios" table="CAMPANA_CONVENIO" order-by="idCampana" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_SUB_EMPRESA" precision="9" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="mx.com.convenios.bean.CampanaConvenio" />
+        </set>
+    </class>
+</hibernate-mapping>

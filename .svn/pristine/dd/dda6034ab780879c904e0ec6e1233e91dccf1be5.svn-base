@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2021, 12:37:22 PM by Hibernate Tools 4.3.5.Final -->
+<hibernate-mapping>
+    <class name="mx.com.convenios.bean.MonederoConvenio" table="MONEDERO_CONVENIO" schema="POS_DEVLYN" optimistic-lock="version">
+        <id name="idTarjeta" type="string">
+            <column name="ID_TARJETA" length="17" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="campanaConvenio" class="mx.com.convenios.bean.CampanaConvenio" fetch="select">
+            <column name="ID_CAMPANA" precision="9" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="activo" type="boolean">
+            <column name="ACTIVO" precision="1" scale="0" not-null="true" />
+        </property>
+        <property name="saldo" type="big_decimal">
+            <column name="SALDO" precision="10" not-null="true" />
+        </property>
+        <property name="idCentro" type="string">
+            <column name="ID_CENTRO" length="4" />
+        </property>
+        <property name="idEmpleadoCreacion" type="java.lang.Integer">
+            <column name="ID_EMPLEADO_CREACION" precision="9" scale="0" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="FECHA_CREACION" />
+        </property>
+        <property name="fechaRedencion" type="timestamp">
+            <column name="FECHA_REDENCION" />
+        </property>
+        <property name="idEmpleadoRedencion" type="java.lang.Integer">
+            <column name="ID_EMPLEADO_REDENCION" precision="9" scale="0" />
+        </property>
+        <property name="idCliente" type="java.lang.Integer">
+            <column name="ID_CLIENTE" precision="9" scale="0" />
+        </property>
+        <property name="idPedido" type="java.lang.Integer">
+            <column name="ID_PEDIDO" precision="9" scale="0" />
+        </property>
+        <property name="fechaActivacion" type="timestamp">
+            <column name="FECHA_ACTIVACION" />
+        </property>
+    </class>
+</hibernate-mapping>

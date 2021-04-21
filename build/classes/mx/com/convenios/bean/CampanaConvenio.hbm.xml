@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2021, 12:37:22 PM by Hibernate Tools 4.3.5.Final -->
+<hibernate-mapping>
+    <class name="mx.com.convenios.bean.CampanaConvenio" table="CAMPANA_CONVENIO" schema="POS_DEVLYN" optimistic-lock="version">
+        <id name="idCampana" type="int">
+            <column name="ID_CAMPANA" precision="9" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="catEmpresa" class="mx.com.convenios.bean.CatEmpresa" fetch="select">
+            <column name="ID_EMPRESA" precision="9" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="catSubEmpresa" class="mx.com.convenios.bean.CatSubEmpresa" fetch="select">
+            <column name="ID_SUB_EMPRESA" precision="9" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="100" not-null="true" />
+        </property>
+        <property name="fechaInicio" type="timestamp">
+            <column name="FECHA_INICIO" not-null="true" />
+        </property>
+        <property name="fechaVigencia" type="timestamp">
+            <column name="FECHA_VIGENCIA" not-null="true" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="FECHA_CREACION" not-null="true" />
+        </property>
+        <property name="montoMinimo" type="big_decimal">
+            <column name="MONTO_MINIMO" precision="10" not-null="true" />
+        </property>
+        <property name="capturaDatos" type="boolean">
+            <column name="CAPTURA_DATOS" precision="1" scale="0" not-null="true" />
+        </property>
+        <property name="monederos" type="long">
+            <column name="MONEDEROS" precision="16" scale="0" not-null="true" />
+        </property>
+        <property name="status" type="java.lang.Character">
+            <column name="STATUS" length="1" />
+        </property>
+        <property name="tipoMonedero" type="java.lang.Character">
+            <column name="TIPO_MONEDERO" length="1" />
+        </property>
+        <set name="historicoCampanaConvenios" table="HISTORICO_CAMPANA_CONVENIO" cascade="save-update" order-by="idHistoricoCampanaConvenio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_CAMPANA_CONVENIO" precision="9" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="mx.com.convenios.bean.HistoricoCampanaConvenio" />
+        </set>
+        <set name="monederoConvenios" table="MONEDERO_CONVENIO" cascade="save-update" order-by="idTarjeta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_CAMPANA" precision="9" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="mx.com.convenios.bean.MonederoConvenio" />
+        </set>
+    </class>
+</hibernate-mapping>

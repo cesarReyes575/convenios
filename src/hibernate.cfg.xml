@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.show_sql">false</property>
+
+<!-- 		<property name="hibernate.bytecode.use_reflection_optimizer">false</property> -->
+<!-- 		<property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property> -->
+<!-- 		<property name="hibernate.connection.password">d3vP0sdb$2018</property> -->
+<!-- 		<property name="hibernate.connection.url">jdbc:oracle:thin:@172.16.0.72:1521:orclpro</property> -->
+<!-- 		<property name="hibernate.connection.username">pos_devlyn</property> -->
+<!-- 		<property name="hibernate.search.autoregister_listeners">true</property> -->
+<!-- 		<property name="hibernate.validator.apply_to_ddl">false</property> -->
+
+		<mapping resource="mx/com/convenios/bean/Usuario.hbm.xml" />
+		<mapping resource="mx/com/convenios/bean/CatEmpresa.hbm.xml" />
+		<mapping resource="mx/com/convenios/bean/HistoricoEmpresa.hbm.xml" />
+		<mapping resource="mx/com/convenios/bean/CatSubEmpresa.hbm.xml" />
+		<mapping resource="mx/com/convenios/bean/CampanaConvenio.hbm.xml" />
+		<mapping resource="mx/com/convenios/bean/HistoricoCampanaConvenio.hbm.xml" />
+		<mapping resource="mx/com/convenios/bean/MonederoConvenio.hbm.xml" />
+		
+		
+		
+	
+	</session-factory>
+</hibernate-configuration>

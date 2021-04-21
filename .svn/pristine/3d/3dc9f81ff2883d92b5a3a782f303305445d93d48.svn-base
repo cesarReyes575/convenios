@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16 abr. 2021 11:01:47 by Hibernate Tools 4.3.5.Final -->
+<hibernate-mapping>
+    <class name="mx.com.convenios.bean.CatEmpresa" table="CAT_EMPRESA" schema="POS_DEVLYN" optimistic-lock="version">
+        <id name="idEmpresa" type="int">
+            <column name="ID_EMPRESA" precision="9" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="100" not-null="true" />
+        </property>
+        <property name="nombreRepresentante" type="string">
+            <column name="NOMBRE_REPRESENTANTE" length="100" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="DIRECCION" length="150" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="TELEFONO" length="15" not-null="true" />
+        </property>
+        <property name="correo" type="string">
+            <column name="CORREO" length="65" not-null="true" />
+        </property>
+        <set name="catSubEmpresas" table="CAT_SUB_EMPRESA" order-by="idSubEmpresa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_EMPRESA" precision="9" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="mx.com.convenios.bean.CatSubEmpresa" />
+        </set>
+        <set name="historicoEmpresas" table="HISTORICO_EMPRESA" order-by="idHistoricoEmpresa" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_EMPRESA" precision="9" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="mx.com.convenios.bean.HistoricoEmpresa" />
+        </set>
+        <set name="campanaConvenios" table="CAMPANA_CONVENIO" order-by="idCampana" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_EMPRESA" precision="9" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="mx.com.convenios.bean.CampanaConvenio" />
+        </set>
+    </class>
+</hibernate-mapping>
